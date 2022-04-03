@@ -1,0 +1,16 @@
+#base img
+FROM node:14.17-alpine
+
+#set current woking dir for docker
+WORKDIR '/app'
+
+#copy this not all as we want to see if package.json changes
+COPY package.json .
+#now run npm install as if only package.json changed
+RUN npm install
+
+#copy all files from this
+COPY . .
+
+#run this command
+CMD ["npm","run","start"]
